@@ -11,6 +11,9 @@ import (
 // Use existing resource group
 const resourceGroup = "geretain-test-resources"
 
+// Red Hat AI Inference is only available in us-east today
+const region = "us-east"
+
 // Ensure every example directory has a corresponding test
 const advancedExampleDir = "examples/advanced"
 const basicExampleDir = "examples/basic"
@@ -21,6 +24,7 @@ func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptio
 		TerraformDir:  dir,
 		Prefix:        prefix,
 		ResourceGroup: resourceGroup,
+		Region:        region,
 	})
 	return options
 }
@@ -29,17 +33,18 @@ func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptio
 func TestRunBasicExample(t *testing.T) {
 	t.Parallel()
 
-	options := setupOptions(t, "mod-template-basic", basicExampleDir)
+	options := setupOptions(t, "rhaii-basic", basicExampleDir)
 
 	output, err := options.RunTestConsistency()
 	assert.Nil(t, err, "This should not have errored")
 	assert.NotNil(t, output, "Expected some output")
 }
 
+// Consistency test for the advanced example
 func TestRunAdvancedExample(t *testing.T) {
 	t.Parallel()
 
-	options := setupOptions(t, "mod-template-adv", advancedExampleDir)
+	options := setupOptions(t, "rhaii-adv", advancedExampleDir)
 
 	output, err := options.RunTestConsistency()
 	assert.Nil(t, err, "This should not have errored")
@@ -50,7 +55,7 @@ func TestRunAdvancedExample(t *testing.T) {
 func TestRunUpgradeExample(t *testing.T) {
 	t.Parallel()
 
-	options := setupOptions(t, "mod-template-adv-upg", advancedExampleDir)
+	options := setupOptions(t, "rhaii-adv-upg", advancedExampleDir)
 
 	output, err := options.RunTestUpgrade()
 	if !options.UpgradeTestSkipped {

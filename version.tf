@@ -3,16 +3,12 @@ terraform {
   #   more info: https://www.hashicorp.com/blog/terraform-1-9-enhances-input-variable-validations
   required_version = ">= 1.9.0"
 
-  #
-  # Developer tips:
-  #   - If your module requires any terraform providers, add them the "required_providers" section below.
-  #   - Each required provider's version should be a flexible range to future proof the module's usage with upcoming minor and patch versions.
-  #
-
   required_providers {
+    # Use "greater than or equal to" range in modules.
+    # 2.8.0 is the first provider release with the ibm_rhaii_* resources and data sources.
     ibm = {
       source  = "IBM-Cloud/ibm"
-      version = ">= 1.88.0, < 3.0.0"
+      version = ">= 2.8.0, < 3.0.0"
     }
   }
 }

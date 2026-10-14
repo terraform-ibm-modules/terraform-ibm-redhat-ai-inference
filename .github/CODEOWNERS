@@ -1,2 +1,3 @@
 # Primary owner should be listed first in list of global owners, followed by any secondary owners
-*       @Aashiq-J @imprateeksh
+# Add the owners of this module before the repository is moved to the terraform-ibm-modules organization, for example:
+# *   @uibm @Aashiq-J @imprateeksh
