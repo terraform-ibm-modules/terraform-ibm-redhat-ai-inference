@@ -1,6 +1,7 @@
 # Red Hat AI Inference module
 
 [![Incubating (Not yet consumable)](https://img.shields.io/badge/status-Incubating%20(Not%20yet%20consumable)-red)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
+[![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/terraform-ibm-redhat-ai-inference?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/terraform-ibm-redhat-ai-inference/releases/latest)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://pre-commit.com/)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://semantic-release.gitbook.io/semantic-release/)
@@ -24,12 +25,10 @@ For more information, see [Red Hat AI Inference on IBM Cloud](https://cloud.ibm.
 <!-- BEGIN OVERVIEW HOOK -->
 ## Overview
 <ul>
-  <li><a href="#reference-architectures">Reference architectures</a></li>
   <li><a href="#terraform-ibm-redhat-ai-inference">terraform-ibm-redhat-ai-inference</a></li>
   <li><a href="./examples">Examples</a>
     <ul>
       <li><a href="./examples/advanced">Advanced example</a></li>
-      <li><a href="./examples/basic">Basic example</a></li>
       <li><a href="./examples/existing-project">Existing project example</a></li>
     </ul>
   </li>
@@ -37,23 +36,6 @@ For more information, see [Red Hat AI Inference on IBM Cloud](https://cloud.ibm.
   <li><a href="#contributing">Contributing</a></li>
 </ul>
 <!-- END OVERVIEW HOOK -->
-
-## Reference architectures
-
-### Red Hat AI Inference project
-
-![Red Hat AI Inference project](./reference-architectures/redhat-ai-inference-project.svg)
-
-The module creates the project in a resource group in the `us-east` region and attaches the user tags and access tags (steps 1 and 2). When `list_inference_models` or `inference_models` is set, the module also reads the models that are available in the project through the Red Hat AI Inference API (step 3).
-
-After the project is created, applications send OpenAI compatible inference requests to the project:
-- From the public internet, to the public endpoint.
-- From a VPC or a Code Engine app, to the private endpoint over the IBM Cloud private network.
-
-Each request carries an IAM token, which the API checks with IAM.
-
-The diagram is a draw.io SVG. Open the file in draw.io (diagrams.net) to edit it.
-
 
 ## terraform-ibm-redhat-ai-inference
 
