@@ -32,6 +32,7 @@ locals {
   region = local.create_project ? var.region : split(":", data.ibm_rhaii_project.existing[0].crn)[5]
 }
 
+# Changing plan_name or location forces replacement (destroys and recreates the project)
 resource "ibm_rhaii_project" "project" {
   count             = local.create_project ? 1 : 0
   name              = var.project_name

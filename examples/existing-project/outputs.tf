@@ -13,8 +13,8 @@ output "project_id" {
 }
 
 output "region" {
-  description = "The region of the project, read from its CRN."
-  value       = module.rhaii.region
+  description = "The region of the project."
+  value       = var.region
 }
 
 output "endpoint" {

@@ -48,7 +48,7 @@ func TestRunAdvancedExample(t *testing.T) {
 func TestRunUpgradeExample(t *testing.T) {
 	t.Parallel()
 
-	options := setupOptions(t, "rhaii-adv-upg", advancedExampleDir)
+	options := setupOptions(t, "rhaii-upg", advancedExampleDir)
 
 	output, err := options.RunTestUpgrade()
 	if !options.UpgradeTestSkipped {
