@@ -6,7 +6,7 @@ locals {
   create_project = var.project_name != null
 
   project = local.create_project ? {
-    id               = ibm_rhaii_project.project[0].id
+    resource_id      = ibm_rhaii_project.project[0].id
     crn              = ibm_rhaii_project.project[0].crn
     guid             = ibm_rhaii_project.project[0].guid
     project_id       = ibm_rhaii_project.project[0].project_id
@@ -18,7 +18,7 @@ locals {
     private_endpoint = ibm_rhaii_project.project[0].private_endpoint
     dashboard_url    = ibm_rhaii_project.project[0].dashboard_url
     } : {
-    id               = data.ibm_rhaii_project.existing[0].id
+    resource_id      = data.ibm_rhaii_project.existing[0].id
     crn              = data.ibm_rhaii_project.existing[0].crn
     guid             = data.ibm_rhaii_project.existing[0].guid
     project_id       = data.ibm_rhaii_project.existing[0].project_id
@@ -31,8 +31,7 @@ locals {
     dashboard_url    = data.ibm_rhaii_project.existing[0].dashboard_url
   }
 
-  # The region is the 6th segment of the CRN, for example crn:v1:bluemix:public:instructlab:us-east:a/<account_id>:<guid>::
-  location = local.create_project ? var.region : split(":", data.ibm_rhaii_project.existing[0].crn)[5]
+  region = local.create_project ? var.region : split(":", data.ibm_rhaii_project.existing[0].crn)[5]
 }
 
 resource "ibm_rhaii_project" "project" {
@@ -63,12 +62,12 @@ data "ibm_rhaii_project" "existing" {
 data "ibm_rhaii_inference_models" "models" {
   count      = var.list_inference_models ? 1 : 0
   project_id = local.project.project_id
-  location   = local.location
+  location   = local.region
 }
 
 data "ibm_rhaii_inference_model" "model" {
   for_each   = toset(var.inference_models)
   project_id = local.project.project_id
-  location   = local.location
+  location   = local.region
   model      = each.value
 }

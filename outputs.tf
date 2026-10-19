@@ -4,7 +4,7 @@
 
 output "id" {
   description = "The unique identifier of the project. This is the CRN of the resource instance."
-  value       = local.project.id
+  value       = local.project.resource_id
 }
 
 output "crn" {
@@ -34,7 +34,7 @@ output "account_id" {
 
 output "region" {
   description = "The region of the project."
-  value       = local.location
+  value       = local.region
 }
 
 output "plan_id" {
