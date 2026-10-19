@@ -2,11 +2,6 @@
 # Outputs
 ########################################################################################################################
 
-output "id" {
-  description = "The unique identifier of the project."
-  value       = module.rhaii.id
-}
-
 output "crn" {
   description = "The CRN of the project."
   value       = module.rhaii.crn

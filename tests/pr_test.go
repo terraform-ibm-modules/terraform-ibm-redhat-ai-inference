@@ -18,13 +18,18 @@ const region = "us-east"
 const advancedExampleDir = "examples/advanced"
 
 func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptions {
-	options := testhelper.TestOptionsDefaultWithVars(&testhelper.TestOptions{
+	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
 		Testing:       t,
 		TerraformDir:  dir,
 		Prefix:        prefix,
 		ResourceGroup: resourceGroup,
 		Region:        region,
 	})
+	// The advanced example hardcodes the region and does not take resource tags, so only pass the variables it declares
+	options.TerraformVars = map[string]interface{}{
+		"prefix":         options.Prefix,
+		"resource_group": resourceGroup,
+	}
 	return options
 }
 

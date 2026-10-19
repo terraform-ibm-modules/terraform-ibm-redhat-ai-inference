@@ -1,6 +1,6 @@
 # Red Hat AI Inference module
 
-[![Incubating (Not yet consumable)](https://img.shields.io/badge/status-Incubating%20(Not%20yet%20consumable)-red)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
+[![Stable (With quality checks)](https://img.shields.io/badge/Status-Stable%20(With%20quality%20checks)-green)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
 [![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/terraform-ibm-redhat-ai-inference?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/terraform-ibm-redhat-ai-inference/releases/latest)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://pre-commit.com/)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
@@ -54,20 +54,16 @@ terraform {
   }
 }
 
-locals {
-  region = "us-east"
-}
-
 provider "ibm" {
   ibmcloud_api_key = "XXXXXXXXXX" # replace with apikey value
-  region           = local.region
+  region           = "us-east"
 }
 
 module "rhaii" {
   source            = "terraform-ibm-modules/redhat-ai-inference/ibm"
   version           = "X.Y.Z" # Replace "X.Y.Z" with a release version to lock into a specific release
   project_name      = "my-rhaii-project"
-  region            = local.region
+  region            = "us-east"
   resource_group_id = "xxXXxxXXxXxXXXXxxXxxxXXXXxXXXXX" # Replace with the actual ID of resource group to use
   resource_tags     = ["env:dev"]
   access_tags       = ["project:rhaii"] # The access tag must already exist in the account
@@ -142,39 +138,37 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_access_tags"></a> [access\_tags](#input\_access\_tags) | List of access management tags to add to the project, in `key:value` format. The tags must already exist in the account. Only used when `project_name` is set. | `list(string)` | `[]` | no |
-| <a name="input_existing_project_id"></a> [existing\_project\_id](#input\_existing\_project\_id) | The ID (GUID) or CRN of an existing Red Hat AI Inference project. When set, the module does not create a project and reads this one instead. | `string` | `null` | no |
-| <a name="input_inference_models"></a> [inference\_models](#input\_inference\_models) | List of inference model IDs to read from the project, for example `["llama-3-3-70b-instruct"]`. The plan fails if a model is not available in the project. The details are returned in the `inference_models` output. Terraform must be able to reach the Red Hat AI Inference API endpoint. | `list(string)` | `[]` | no |
-| <a name="input_list_inference_models"></a> [list\_inference\_models](#input\_list\_inference\_models) | Set to `true` to read the list of inference models that are available in the project and return their IDs in the `available_inference_model_ids` output. Terraform must be able to reach the Red Hat AI Inference API endpoint. | `bool` | `false` | no |
-| <a name="input_plan"></a> [plan](#input\_plan) | The name of the pricing plan of the project. The plan cannot be changed after the project is created; a new plan replaces the project. | `string` | `"instructlab-pricing-plan"` | no |
-| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | The name of the Red Hat AI Inference project to create. Set this or `existing_project_id`, not both. | `string` | `null` | no |
-| <a name="input_region"></a> [region](#input\_region) | The region where the project is created. The service is available in `us-east` today. | `string` | `"us-east"` | no |
-| <a name="input_resource_group_id"></a> [resource\_group\_id](#input\_resource\_group\_id) | The ID of the resource group where the project is created. Required when `project_name` is set. | `string` | `null` | no |
-| <a name="input_resource_tags"></a> [resource\_tags](#input\_resource\_tags) | List of user tags to add to the project. Only used when `project_name` is set. | `list(string)` | `[]` | no |
+| <a name="input_access_tags"></a> [access\_tags](#input\_access\_tags) | List of access management tags to add to the Red Hat AI Inference (RHAII) project, in `key:value` format. The tags must already exist in the account. Only used when `project_name` is set. | `list(string)` | `[]` | no |
+| <a name="input_existing_project_id"></a> [existing\_project\_id](#input\_existing\_project\_id) | The ID (GUID) or CRN of an existing Red Hat AI Inference (RHAII) project. When set, the module does not create a project and reads this one instead. | `string` | `null` | no |
+| <a name="input_inference_models"></a> [inference\_models](#input\_inference\_models) | List of inference model IDs to read from the Red Hat AI Inference (RHAII) project, for example `["llama-3-3-70b-instruct"]`. The plan fails if a model is not available in the project. The details are returned in the `inference_models` output. Terraform must be able to reach the Red Hat AI Inference API endpoint. | `list(string)` | `[]` | no |
+| <a name="input_list_inference_models"></a> [list\_inference\_models](#input\_list\_inference\_models) | Set to `true` to read the list of inference models that are available in the Red Hat AI Inference (RHAII) project and return their IDs in the `available_inference_model_ids` output. Terraform must be able to reach the Red Hat AI Inference API endpoint. | `bool` | `false` | no |
+| <a name="input_plan"></a> [plan](#input\_plan) | The name of the pricing plan of the Red Hat AI Inference (RHAII) project. The plan cannot be changed after the project is created; a new plan replaces the project. [Learn more](https://cloud.ibm.com/docs/inference). | `string` | `"instructlab-pricing-plan"` | no |
+| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | The name of the Red Hat AI Inference (RHAII) project to create. Set this or `existing_project_id`, not both. | `string` | `null` | no |
+| <a name="input_region"></a> [region](#input\_region) | The region where the Red Hat AI Inference (RHAII) project is created. Only `us-east` is supported. [Learn more](https://cloud.ibm.com/docs/inference). | `string` | `"us-east"` | no |
+| <a name="input_resource_group_id"></a> [resource\_group\_id](#input\_resource\_group\_id) | The ID of the resource group where the Red Hat AI Inference (RHAII) project is created. Required when `project_name` is set. | `string` | `null` | no |
+| <a name="input_resource_tags"></a> [resource\_tags](#input\_resource\_tags) | List of user tags to add to the Red Hat AI Inference (RHAII) project. Only used when `project_name` is set. | `list(string)` | `[]` | no |
 
 ### Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_account_id"></a> [account\_id](#output\_account\_id) | The ID of the account that owns the project. |
-| <a name="output_available_inference_model_ids"></a> [available\_inference\_model\_ids](#output\_available\_inference\_model\_ids) | The IDs of the inference models that are available in the project. Empty when `list_inference_models` is `false`. |
-| <a name="output_crn"></a> [crn](#output\_crn) | The CRN of the project. |
-| <a name="output_dashboard_url"></a> [dashboard\_url](#output\_dashboard\_url) | The relative URL of the project in the IBM Cloud console. |
-| <a name="output_endpoint"></a> [endpoint](#output\_endpoint) | The public base URL of the Red Hat AI Inference API for this project. |
-| <a name="output_guid"></a> [guid](#output\_guid) | The GUID of the project resource instance. |
-| <a name="output_id"></a> [id](#output\_id) | The unique identifier of the project. This is the CRN of the resource instance. |
+| <a name="output_account_id"></a> [account\_id](#output\_account\_id) | The ID of the account that owns the Red Hat AI Inference (RHAII) project. |
+| <a name="output_available_inference_model_ids"></a> [available\_inference\_model\_ids](#output\_available\_inference\_model\_ids) | The IDs of the inference models that are available in the Red Hat AI Inference (RHAII) project. Empty when `list_inference_models` is `false`. |
+| <a name="output_crn"></a> [crn](#output\_crn) | The CRN of the Red Hat AI Inference (RHAII) project. |
+| <a name="output_dashboard_url"></a> [dashboard\_url](#output\_dashboard\_url) | The relative URL of the Red Hat AI Inference (RHAII) project in the IBM Cloud console. |
+| <a name="output_endpoint"></a> [endpoint](#output\_endpoint) | The public base URL of the API for this Red Hat AI Inference (RHAII) project. |
+| <a name="output_guid"></a> [guid](#output\_guid) | The GUID of the Red Hat AI Inference (RHAII) project resource instance. |
 | <a name="output_inference_models"></a> [inference\_models](#output\_inference\_models) | Details of the inference models in `inference_models`, keyed by model ID. |
-| <a name="output_name"></a> [name](#output\_name) | The name of the project. |
-| <a name="output_plan_id"></a> [plan\_id](#output\_plan\_id) | The global catalog ID of the pricing plan of the project. |
-| <a name="output_private_endpoint"></a> [private\_endpoint](#output\_private\_endpoint) | The private base URL of the Red Hat AI Inference API for this project. It can be reached only from the IBM Cloud private network. |
-| <a name="output_project_id"></a> [project\_id](#output\_project\_id) | The ID of the project. Use this value as `project_id` in the Red Hat AI Inference API. |
-| <a name="output_region"></a> [region](#output\_region) | The region of the project. |
-| <a name="output_state"></a> [state](#output\_state) | The state of the project, for example `active`. |
+| <a name="output_name"></a> [name](#output\_name) | The name of the Red Hat AI Inference (RHAII) project. |
+| <a name="output_plan_id"></a> [plan\_id](#output\_plan\_id) | The global catalog ID of the pricing plan of the Red Hat AI Inference (RHAII) project. |
+| <a name="output_private_endpoint"></a> [private\_endpoint](#output\_private\_endpoint) | The private base URL of the API for this Red Hat AI Inference (RHAII) project. It can be reached only from the IBM Cloud private network. |
+| <a name="output_project_id"></a> [project\_id](#output\_project\_id) | The ID of the Red Hat AI Inference (RHAII) project. Use this value as `project_id` in the API. |
+| <a name="output_region"></a> [region](#output\_region) | The region of the Red Hat AI Inference (RHAII) project. |
+| <a name="output_state"></a> [state](#output\_state) | The state of the Red Hat AI Inference (RHAII) project, for example `active`. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Known issues
 
-- The module needs version 2.8.0 or later of the IBM Cloud Terraform provider, which is the first release with the `ibm_rhaii_*` resources and data sources.
 - The service is available only in the `us-east` region and on the `instructlab-pricing-plan` plan today.
 - The plan of a project cannot be changed. A change to `plan` or `region` replaces the project.
 - `resource_tags` and `access_tags` are ignored when `existing_project_id` is set. Manage the tags of an existing project where the project is created.

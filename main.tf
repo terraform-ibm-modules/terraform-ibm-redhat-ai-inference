@@ -6,7 +6,6 @@ locals {
   create_project = var.project_name != null
 
   project = local.create_project ? {
-    resource_id      = ibm_rhaii_project.project[0].id
     crn              = ibm_rhaii_project.project[0].crn
     guid             = ibm_rhaii_project.project[0].guid
     project_id       = ibm_rhaii_project.project[0].project_id
@@ -18,7 +17,6 @@ locals {
     private_endpoint = ibm_rhaii_project.project[0].private_endpoint
     dashboard_url    = ibm_rhaii_project.project[0].dashboard_url
     } : {
-    resource_id      = data.ibm_rhaii_project.existing[0].id
     crn              = data.ibm_rhaii_project.existing[0].crn
     guid             = data.ibm_rhaii_project.existing[0].guid
     project_id       = data.ibm_rhaii_project.existing[0].project_id

@@ -4,7 +4,7 @@
 
 variable "project_name" {
   type        = string
-  description = "The name of the Red Hat AI Inference project to create. Set this or `existing_project_id`, not both."
+  description = "The name of the Red Hat AI Inference (RHAII) project to create. Set this or `existing_project_id`, not both."
   default     = null
 
   validation {
@@ -20,13 +20,13 @@ variable "project_name" {
 
 variable "existing_project_id" {
   type        = string
-  description = "The ID (GUID) or CRN of an existing Red Hat AI Inference project. When set, the module does not create a project and reads this one instead."
+  description = "The ID (GUID) or CRN of an existing Red Hat AI Inference (RHAII) project. When set, the module does not create a project and reads this one instead."
   default     = null
 }
 
 variable "resource_group_id" {
   type        = string
-  description = "The ID of the resource group where the project is created. Required when `project_name` is set."
+  description = "The ID of the resource group where the Red Hat AI Inference (RHAII) project is created. Required when `project_name` is set."
   default     = null
 
   validation {
@@ -37,19 +37,19 @@ variable "resource_group_id" {
 
 variable "region" {
   type        = string
-  description = "The region where the project is created. The service is available in `us-east` today."
+  description = "The region where the Red Hat AI Inference (RHAII) project is created. Only `us-east` is supported. [Learn more](https://cloud.ibm.com/docs/inference)."
   default     = "us-east"
   nullable    = false
 
   validation {
-    condition     = can(regex("^[a-z]{2}-[a-z]+$", var.region))
-    error_message = "The region must be an IBM Cloud region name, for example 'us-east'."
+    condition     = contains(["us-east"], var.region)
+    error_message = "The specified region is not supported. The following regions are supported: 'us-east'."
   }
 }
 
 variable "plan" {
   type        = string
-  description = "The name of the pricing plan of the project. The plan cannot be changed after the project is created; a new plan replaces the project."
+  description = "The name of the pricing plan of the Red Hat AI Inference (RHAII) project. The plan cannot be changed after the project is created; a new plan replaces the project. [Learn more](https://cloud.ibm.com/docs/inference)."
   default     = "instructlab-pricing-plan"
   nullable    = false
 
@@ -61,7 +61,7 @@ variable "plan" {
 
 variable "resource_tags" {
   type        = list(string)
-  description = "List of user tags to add to the project. Only used when `project_name` is set."
+  description = "List of user tags to add to the Red Hat AI Inference (RHAII) project. Only used when `project_name` is set."
   default     = []
   nullable    = false
 
@@ -73,7 +73,7 @@ variable "resource_tags" {
 
 variable "access_tags" {
   type        = list(string)
-  description = "List of access management tags to add to the project, in `key:value` format. The tags must already exist in the account. Only used when `project_name` is set."
+  description = "List of access management tags to add to the Red Hat AI Inference (RHAII) project, in `key:value` format. The tags must already exist in the account. Only used when `project_name` is set."
   default     = []
   nullable    = false
 
@@ -85,14 +85,14 @@ variable "access_tags" {
 
 variable "list_inference_models" {
   type        = bool
-  description = "Set to `true` to read the list of inference models that are available in the project and return their IDs in the `available_inference_model_ids` output. Terraform must be able to reach the Red Hat AI Inference API endpoint."
+  description = "Set to `true` to read the list of inference models that are available in the Red Hat AI Inference (RHAII) project and return their IDs in the `available_inference_model_ids` output. Terraform must be able to reach the Red Hat AI Inference API endpoint."
   default     = false
   nullable    = false
 }
 
 variable "inference_models" {
   type        = list(string)
-  description = "List of inference model IDs to read from the project, for example `[\"llama-3-3-70b-instruct\"]`. The plan fails if a model is not available in the project. The details are returned in the `inference_models` output. Terraform must be able to reach the Red Hat AI Inference API endpoint."
+  description = "List of inference model IDs to read from the Red Hat AI Inference (RHAII) project, for example `[\"llama-3-3-70b-instruct\"]`. The plan fails if a model is not available in the project. The details are returned in the `inference_models` output. Terraform must be able to reach the Red Hat AI Inference API endpoint."
   default     = []
   nullable    = false
 

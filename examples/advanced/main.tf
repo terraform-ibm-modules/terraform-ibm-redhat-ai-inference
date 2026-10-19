@@ -15,7 +15,7 @@ module "resource_group" {
 ########################################################################################################################
 
 resource "ibm_iam_access_tag" "rhaii" {
-  name = "${var.prefix}:rhaii"
+  name = "project:${var.prefix}-rhaii"
 }
 
 ########################################################################################################################
@@ -25,9 +25,8 @@ resource "ibm_iam_access_tag" "rhaii" {
 module "rhaii" {
   source                = "../.."
   project_name          = "${var.prefix}-rhaii"
-  region                = var.region
+  region                = "us-east"
   resource_group_id     = module.resource_group.resource_group_id
-  resource_tags         = var.resource_tags
   access_tags           = [ibm_iam_access_tag.rhaii.name]
   list_inference_models = true
   inference_models      = ["llama-3-3-70b-instruct"]
