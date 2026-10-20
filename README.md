@@ -26,11 +26,18 @@ For more information, see [Red Hat AI Inference on IBM Cloud](https://cloud.ibm.
 ## Overview
 <ul>
   <li><a href="#terraform-ibm-redhat-ai-inference">terraform-ibm-redhat-ai-inference</a></li>
-  <li><a href="./examples">Examples</a>
+  <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-redhat-ai-inference/tree/main/examples">Examples</a>
     <ul>
-      <li><a href="./examples/advanced">Advanced example</a></li>
-      <li><a href="./examples/existing-project">Existing project example</a></li>
+      <li>
+        <a href="https://github.com/terraform-ibm-modules/terraform-ibm-redhat-ai-inference/tree/main/examples/advanced">Advanced example</a>
+        <a href="https://cloud.ibm.com/schematics/workspaces/create?workspace_name=redhat-ai-inference-advanced-example&repository=https://github.com/terraform-ibm-modules/terraform-ibm-redhat-ai-inference/tree/main/examples/advanced"><img src="https://img.shields.io/badge/Deploy%20with%20IBM%20Cloud%20Schematics-0f62fe?style=flat&logo=ibm&logoColor=white&labelColor=0f62fe" alt="Deploy with IBM Cloud Schematics" style="height: 16px; vertical-align: text-bottom; margin-left: 5px;"></a>
+      </li>
+      <li>
+        <a href="https://github.com/terraform-ibm-modules/terraform-ibm-redhat-ai-inference/tree/main/examples/existing-project">Existing project example</a>
+        <a href="https://cloud.ibm.com/schematics/workspaces/create?workspace_name=redhat-ai-inference-existing-project-example&repository=https://github.com/terraform-ibm-modules/terraform-ibm-redhat-ai-inference/tree/main/examples/existing-project"><img src="https://img.shields.io/badge/Deploy%20with%20IBM%20Cloud%20Schematics-0f62fe?style=flat&logo=ibm&logoColor=white&labelColor=0f62fe" alt="Deploy with IBM Cloud Schematics" style="height: 16px; vertical-align: text-bottom; margin-left: 5px;"></a>
+      </li>
     </ul>
+    ℹ️ Ctrl/Cmd+Click or right-click on the Schematics deploy button to open in a new tab.
   </li>
   <li><a href="#known-issues">Known issues</a></li>
   <li><a href="#contributing">Contributing</a></li>
@@ -117,7 +124,7 @@ You need the following permissions to run this module:
 ### Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
 | <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 2.8.0, < 3.0.0 |
 
@@ -128,7 +135,7 @@ No modules.
 ### Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [ibm_rhaii_project.project](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/rhaii_project) | resource |
 | [ibm_rhaii_inference_model.model](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/data-sources/rhaii_inference_model) | data source |
 | [ibm_rhaii_inference_models.models](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/data-sources/rhaii_inference_models) | data source |
@@ -137,7 +144,7 @@ No modules.
 ### Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_access_tags"></a> [access\_tags](#input\_access\_tags) | List of access management tags to add to the Red Hat AI Inference (RHAII) project, in `key:value` format. The tags must already exist in the account. Only used when `project_name` is set. | `list(string)` | `[]` | no |
 | <a name="input_existing_project_id"></a> [existing\_project\_id](#input\_existing\_project\_id) | The ID (GUID) or CRN of an existing Red Hat AI Inference (RHAII) project. When set, the module does not create a project and reads this one instead. | `string` | `null` | no |
 | <a name="input_inference_models"></a> [inference\_models](#input\_inference\_models) | List of inference model IDs to read from the Red Hat AI Inference (RHAII) project, for example `["llama-3-3-70b-instruct"]`. The plan fails if a model is not available in the project. The details are returned in the `inference_models` output. Terraform must be able to reach the Red Hat AI Inference API endpoint. | `list(string)` | `[]` | no |
@@ -151,7 +158,7 @@ No modules.
 ### Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_account_id"></a> [account\_id](#output\_account\_id) | The ID of the account that owns the Red Hat AI Inference (RHAII) project. |
 | <a name="output_available_inference_model_ids"></a> [available\_inference\_model\_ids](#output\_available\_inference\_model\_ids) | The IDs of the inference models that are available in the Red Hat AI Inference (RHAII) project. Empty when `list_inference_models` is `false`. |
 | <a name="output_crn"></a> [crn](#output\_crn) | The CRN of the Red Hat AI Inference (RHAII) project. |

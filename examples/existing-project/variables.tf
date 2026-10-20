@@ -10,7 +10,7 @@ variable "ibmcloud_api_key" {
 
 variable "region" {
   type        = string
-  description = "Region of the existing project. Red Hat AI Inference is available in us-east."
+  description = "Region of the existing project. It is only used to configure the IBM provider. Red Hat AI Inference is available in us-east."
   default     = "us-east"
 }
 

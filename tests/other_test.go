@@ -24,7 +24,7 @@ const existingProjectExampleDir = "examples/existing-project"
 func TestRunExistingProjectExample(t *testing.T) {
 	t.Parallel()
 
-	prefix := fmt.Sprintf("rhaii-exist-%s", strings.ToLower(random.UniqueId()))
+	prefix := fmt.Sprintf("rhaii-exist-%s", strings.ToLower(random.UniqueID()))
 	realTerraformDir := ".."
 	tempTerraformDir, err := files.CopyTerraformFolderToTemp(realTerraformDir, prefix)
 	require.NoError(t, err, "Failed to copy the module to a temporary directory")
