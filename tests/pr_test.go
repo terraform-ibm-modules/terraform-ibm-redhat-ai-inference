@@ -48,6 +48,9 @@ func TestRunAdvancedExample(t *testing.T) {
 func TestRunUpgradeExample(t *testing.T) {
 	t.Parallel()
 
+	// TODO: Remove t.Skip once the initial release (v1.0.0) is published to main
+	t.Skip("Skipping upgrade test for initial module release")
+
 	options := setupOptions(t, "rhaii-upg", advancedExampleDir)
 
 	output, err := options.RunTestUpgrade()
