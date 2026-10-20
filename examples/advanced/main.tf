@@ -11,14 +11,6 @@ module "resource_group" {
 }
 
 ########################################################################################################################
-# Access tag
-########################################################################################################################
-
-resource "ibm_iam_access_tag" "rhaii" {
-  name = "project:${var.prefix}-rhaii"
-}
-
-########################################################################################################################
 # Red Hat AI Inference project
 ########################################################################################################################
 
@@ -27,7 +19,6 @@ module "rhaii" {
   project_name          = "${var.prefix}-rhaii"
   region                = "us-east"
   resource_group_id     = module.resource_group.resource_group_id
-  access_tags           = [ibm_iam_access_tag.rhaii.name]
   list_inference_models = true
   inference_models      = ["llama-3-3-70b-instruct"]
 }
