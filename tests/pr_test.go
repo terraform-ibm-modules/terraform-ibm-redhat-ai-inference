@@ -11,35 +11,33 @@ import (
 // Use existing resource group
 const resourceGroup = "geretain-test-resources"
 
+// Red Hat AI Inference is only available in us-east today
+const region = "us-east"
+
 // Ensure every example directory has a corresponding test
 const advancedExampleDir = "examples/advanced"
-const basicExampleDir = "examples/basic"
 
 func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptions {
-	options := testhelper.TestOptionsDefaultWithVars(&testhelper.TestOptions{
+	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
 		Testing:       t,
 		TerraformDir:  dir,
 		Prefix:        prefix,
 		ResourceGroup: resourceGroup,
+		Region:        region,
 	})
+	// The advanced example hardcodes the region and does not take resource tags, so only pass the variables it declares
+	options.TerraformVars = map[string]interface{}{
+		"prefix":         options.Prefix,
+		"resource_group": resourceGroup,
+	}
 	return options
 }
 
-// Consistency test for the basic example
-func TestRunBasicExample(t *testing.T) {
-	t.Parallel()
-
-	options := setupOptions(t, "mod-template-basic", basicExampleDir)
-
-	output, err := options.RunTestConsistency()
-	assert.Nil(t, err, "This should not have errored")
-	assert.NotNil(t, output, "Expected some output")
-}
-
+// Consistency test for the advanced example
 func TestRunAdvancedExample(t *testing.T) {
 	t.Parallel()
 
-	options := setupOptions(t, "mod-template-adv", advancedExampleDir)
+	options := setupOptions(t, "rhaii-adv", advancedExampleDir)
 
 	output, err := options.RunTestConsistency()
 	assert.Nil(t, err, "This should not have errored")
@@ -50,7 +48,10 @@ func TestRunAdvancedExample(t *testing.T) {
 func TestRunUpgradeExample(t *testing.T) {
 	t.Parallel()
 
-	options := setupOptions(t, "mod-template-adv-upg", advancedExampleDir)
+	// TODO: Remove t.Skip once the initial release (v1.0.0) is published to main
+	t.Skip("Skipping upgrade test for initial module release")
+
+	options := setupOptions(t, "rhaii-upg", advancedExampleDir)
 
 	output, err := options.RunTestUpgrade()
 	if !options.UpgradeTestSkipped {
