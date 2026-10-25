@@ -2,7 +2,7 @@
 
 Deploys a Red Hat AI Inference (RHAII) project on IBM Cloud. A project is an instance of the `instructlab` service. It gives you a dedicated endpoint for the Red Hat AI Inference API, which serves OpenAI compatible chat completion, completion, embedding and rerank requests on the models that are available in the project.
 
-This solution wraps the [terraform-ibm-modules/redhat-ai-inference](https://github.com/terraform-ibm-modules/terraform-ibm-redhat-ai-inference) module (version 1.0.0) and the [terraform-ibm-modules/resource-group](https://github.com/terraform-ibm-modules/terraform-ibm-resource-group) module.
+This solution wraps the module in the root of this repository and the [terraform-ibm-modules/resource-group](https://github.com/terraform-ibm-modules/terraform-ibm-resource-group) module.
 
 ## What it deploys
 

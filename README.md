@@ -39,6 +39,11 @@ For more information, see [Red Hat AI Inference on IBM Cloud](https://cloud.ibm.
     </ul>
     ℹ️ Ctrl/Cmd+Click or right-click on the Schematics deploy button to open in a new tab.
   </li>
+  <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-redhat-ai-inference/tree/main/solutions">Deployable Architectures</a>
+    <ul>
+      <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-redhat-ai-inference/tree/main/solutions/fully-configurable">Red Hat AI Inference deployable architecture (fully configurable)</a></li>
+    </ul>
+  </li>
   <li><a href="#known-issues">Known issues</a></li>
   <li><a href="#contributing">Contributing</a></li>
 </ul>

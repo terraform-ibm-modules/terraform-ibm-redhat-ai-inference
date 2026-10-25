@@ -23,8 +23,7 @@ module "resource_group" {
 ########################################################################################################################
 
 module "rhaii" {
-  source  = "terraform-ibm-modules/redhat-ai-inference/ibm"
-  version = "1.0.0"
+  source = "../.."
 
   # The module requires exactly one of project_name or existing_project_id
   project_name        = local.create_project ? local.project_name : null
