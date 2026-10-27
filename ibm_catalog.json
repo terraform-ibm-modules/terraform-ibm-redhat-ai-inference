@@ -138,10 +138,11 @@
             },
             {
               "role_crns": [
+                "crn:v1:bluemix:public:iam::::serviceRole:Reader",
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "instructlab",
-              "notes": "Platform Editor access is required to create, update and delete the Red Hat AI Inference project. A service access role that allows reading inference models is also required when inference models are listed or checked."
+              "notes": "Platform Editor access is required to create, update and delete the Red Hat AI Inference project. Service access Reader is required when 'list_inference_models' is true or 'inference_models' is set, to read the available inference models."
             },
             {
               "role_crns": [
@@ -160,7 +161,6 @@
             ],
             "diagrams": []
           },
-          "dependencies": [],
           "dependency_version_2": true,
           "terraform_version": "1.12.2",
           "ignore_readme": true
