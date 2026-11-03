@@ -159,7 +159,16 @@
                 "description": "Creates a Red Hat AI Inference project, or reads an existing one, and returns its endpoints."
               }
             ],
-            "diagrams": []
+            "diagrams": [
+              {
+                "diagram": {
+                  "caption": "Red Hat AI Inference project on IBM Cloud",
+                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-redhat-ai-inference/main/reference-architectures/redhat-ai-inference.svg",
+                  "type": "image/svg+xml"
+                },
+                "description": "This architecture creates a Red Hat AI Inference project in the us-east region, or reads an existing one, and returns its public and private endpoints. Applications send OpenAI compatible inference requests to the project over the public endpoint, or over the private endpoint from the IBM Cloud private network."
+              }
+            ]
           },
           "dependency_version_2": true,
           "terraform_version": "1.12.2",
