@@ -120,7 +120,7 @@ You need the following permissions to run this module:
     - `Viewer` access on the specific resource group
 - **Red Hat AI Inference** (`instructlab`) service
     - `Editor` platform access, to create, update and delete the project
-    - A service access role that allows reading inference models, when `list_inference_models` is `true` or `inference_models` is not empty
+    - `Reader` service access, to read inference models, when `list_inference_models` is `true` or `inference_models` is not empty
 - Tagging service
     - `Administrator` access, to attach access management tags, when `access_tags` is not empty
 

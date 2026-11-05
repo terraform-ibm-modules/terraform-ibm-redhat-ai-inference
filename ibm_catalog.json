@@ -88,7 +88,8 @@
               }
             },
             {
-              "key": "region"
+              "key": "region",
+              "hidden": true
             },
             {
               "key": "project_name"
@@ -97,7 +98,8 @@
               "key": "existing_project_id"
             },
             {
-              "key": "plan"
+              "key": "plan",
+              "hidden": true
             },
             {
               "key": "resource_tags",
