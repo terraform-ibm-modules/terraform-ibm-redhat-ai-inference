@@ -39,6 +39,11 @@ For more information, see [Red Hat AI Inference on IBM Cloud](https://cloud.ibm.
     </ul>
     ℹ️ Ctrl/Cmd+Click or right-click on the Schematics deploy button to open in a new tab.
   </li>
+  <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-redhat-ai-inference/tree/main/solutions">Deployable Architectures</a>
+    <ul>
+      <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-redhat-ai-inference/tree/main/solutions/fully-configurable">Red Hat AI Inference deployable architecture (fully configurable)</a></li>
+    </ul>
+  </li>
   <li><a href="#known-issues">Known issues</a></li>
   <li><a href="#contributing">Contributing</a></li>
 </ul>
@@ -115,7 +120,7 @@ You need the following permissions to run this module:
     - `Viewer` access on the specific resource group
 - **Red Hat AI Inference** (`instructlab`) service
     - `Editor` platform access, to create, update and delete the project
-    - A service access role that allows reading inference models, when `list_inference_models` is `true` or `inference_models` is not empty
+    - `Reader` service access, to read inference models, when `list_inference_models` is `true` or `inference_models` is not empty
 - Tagging service
     - `Administrator` access, to attach access management tags, when `access_tags` is not empty
 
@@ -126,7 +131,7 @@ You need the following permissions to run this module:
 | Name | Version |
 | ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
-| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 2.8.0, < 3.0.0 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 2.8.2, < 3.0.0 |
 
 ### Modules
 
