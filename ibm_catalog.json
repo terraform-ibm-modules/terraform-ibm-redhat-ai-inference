@@ -88,8 +88,7 @@
               }
             },
             {
-              "key": "region",
-              "hidden": true
+              "key": "region"
             },
             {
               "key": "project_name"

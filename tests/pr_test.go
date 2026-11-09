@@ -107,9 +107,6 @@ func TestRunFullyConfigurableDA(t *testing.T) {
 func TestRunUpgradeFullyConfigurableDA(t *testing.T) {
 	t.Parallel()
 
-	// TODO: Remove t.Skip once a release that includes this DA is published to main
-	t.Skip("Skipping DA upgrade test until the DA is released")
-
 	options := setupSchematicOptions(t, "rhaii-da-up", fullyConfigurableDADir)
 
 	err := options.RunSchematicUpgradeTest()
