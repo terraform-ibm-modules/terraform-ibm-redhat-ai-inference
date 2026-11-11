@@ -102,18 +102,39 @@
             },
             {
               "key": "resource_tags",
-              "type": "array"
+              "type": "array",
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "config_constraints": {
+                  "type": "string"
+                }
+              }
             },
             {
               "key": "access_tags",
-              "type": "array"
+              "type": "array",
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "config_constraints": {
+                  "type": "string"
+                }
+              }
             },
             {
               "key": "list_inference_models"
             },
             {
               "key": "inference_models",
-              "type": "array"
+              "type": "array",
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "config_constraints": {
+                  "type": "string"
+                }
+              }
             },
             {
               "key": "provider_visibility",
